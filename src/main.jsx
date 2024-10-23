@@ -5,9 +5,9 @@ import "./index.css";
 import GlobalProvider from "./globalState/GlobalProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  // <StrictMode>
     <GlobalProvider>
       <App />
     </GlobalProvider>
-  </StrictMode>
+  // </StrictMode>
 );
