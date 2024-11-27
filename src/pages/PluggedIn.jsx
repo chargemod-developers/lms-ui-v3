@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import HeaderWithClock from "../components/general/header/HeaderWithClock";
 import MessageBox from "../components/general/MessageBox";
 import particleIcon from "../assets/images/transparentParticle.gif";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SmallCircularSpinner from "../components/general/smallCircularSpinner/SmallCircularSpinner";
 import Heart from "../components/general/Heart";
+import { GlobalContext } from "../globalState/GlobalProvider";
 
 const PluggedIn = () => {
   const { connectorId } = useParams();
-
+  const navigate = useNavigate();
+  const { gunData, meterValues } = useContext(GlobalContext);
   const [typingComplete, setTypingComplete] = React.useState(false);
   const [isChargingWithApp, setIsChargingWithApp] = React.useState(false);
 
@@ -31,6 +33,14 @@ const PluggedIn = () => {
   const handleAbortAutoCharge = () => {
     setIsChargingWithApp(true);
   }
+
+  useEffect(() => {
+    if (gunData && gunData[connectorId].status === "Charging") {
+        navigate(`/meter-values/${connectorId}`);
+    }else if(gunData && gunData[connectorId].status === "Available"){
+        navigate(`/`);
+    }
+  }, [gunData]);
 
   return (
     <div className=" h-full w-full relative">

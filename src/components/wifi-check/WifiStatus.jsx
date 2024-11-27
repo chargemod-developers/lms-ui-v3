@@ -6,7 +6,7 @@ import { GlobalContext } from "../../globalState/GlobalProvider";
 
 
 const WifiStatus = ({ refresh }) => {
-  const { wifiStatus, deviceStatus, setDeviceStatus } = useContext(GlobalContext);
+  const { wifiStatus } = useContext(GlobalContext);
   return (
     <>
       {wifiStatus ? (
@@ -25,8 +25,6 @@ const WifiStatus = ({ refresh }) => {
 export default WifiStatus;
 
 const NotConnected = ({ refresh }) => {
-  const { wifiStatus, deviceStatus, setDeviceStatus } = useContext(GlobalContext);
-
   return (
     <div>
       <div className="flex flex-col items-center gap-5 text-white font-manrope py-2">

@@ -1,16 +1,31 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import HeaderWithClock from "../../components/general/header/HeaderWithClock";
 import WifiStatus from "../../components/wifi-check/WifiStatus";
 import MessageBox from "../../components/general/MessageBox";
 import { GlobalContext } from "../../globalState/GlobalProvider";
+import { useNavigate } from "react-router-dom";
 
 const WifiCheckPage = () => {
-  const [isTypingComplete, setTypingComplete] = useState(true);
-  const { wifiStatus } = useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  const [isTypingComplete, setTypingComplete] = useState(false);
+  const { wifiStatus, deviceStatus } = useContext(GlobalContext);
 
   const refreshWifi = () => {
     console.log("Refreshing wifi");
   };
+
+  useEffect(() => {
+    console.log("Navigating to CP connected page");
+    if ((wifiStatus, deviceStatus && isTypingComplete)) {
+      setTimeout(() => {
+        if (deviceStatus) {
+          console.log("Navigating to CP page IN");
+          navigate("/admin/cp-connected");
+        }
+      }, 3000);
+    }
+  }, [deviceStatus, isTypingComplete]);
 
   return (
     <div
@@ -40,7 +55,7 @@ const WifiCheckPage = () => {
       {isTypingComplete && (
         <div className=" flex justify-center">
           <div className="w-[80%] ">
-            <WifiStatus />
+            <WifiStatus refresh={refreshWifi}/>
           </div>
         </div>
       )}

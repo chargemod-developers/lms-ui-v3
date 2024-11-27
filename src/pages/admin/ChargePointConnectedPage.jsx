@@ -4,10 +4,17 @@ import CPUrl from "../../components/general/CPUrl";
 import cpIcon from "../../assets/images/ev_charger.png";
 import powerIcon from "../../assets/images/power.png";
 import heartIcon from "../../assets/images/cardiology.png";
+import { useNavigate } from "react-router-dom";
 
 const ChargePointConnectedPage = () => {
+  const navigate = useNavigate();
+
+  const navigateTo = (path) => () => {
+    navigate(path);
+  };
+
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-full flex flex-col" onClick={navigateTo("/")}>
       <HeaderWithClock />
       <div className=" w-full mt-10 flex flex-col items-center justify-center gap-6 font-manrope">
         <h1 className="text-xl text-white">Chargepoint Connected !</h1>

@@ -13,6 +13,8 @@ import PluggedIn from "./pages/PluggedIn";
 import PaymentPending from "./pages/PaymentPending";
 import SomethingWrong from "./pages/SomethingWrong";
 import MeterValues from "./pages/MeterValues";
+import PaymentPage from "./pages/PaymentPage";
+import ThankYou from "./pages/ThankYou";
 
 const App = () => {
   return (
@@ -23,7 +25,9 @@ const App = () => {
           <Route path="plugged-in/:connectorId" element={<PluggedIn />} />
           <Route path="payment-pending" element={<PaymentPending />} />
           <Route path="something-wrong" element={<SomethingWrong />} />
-          <Route path="meter-values" element={<MeterValues />} />
+          <Route path="meter-values/:connectorId" element={<MeterValues />} />
+          <Route path="pay/:duration/:consumed/:amount" element={<PaymentPage />} />
+          <Route path="thank-you" element={<ThankYou />} />
         </Route>
 
         <Route path="/boot" element={<BootPage />} />

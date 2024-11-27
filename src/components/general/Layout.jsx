@@ -2,9 +2,13 @@ import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { GlobalContext } from "../../globalState/GlobalProvider";
 import config from "../../config/config";
+import axios from "axios";
+
+const { serverUrl } = config;
 
 const Layout = () => {
-  const { setWifiStatus, setWs, socketCheckStatus } = useContext(GlobalContext);
+  const { setWifiStatus, setWs, ws, setDeviceStatus, handleGunData, handleMeterValues } =
+    useContext(GlobalContext);
 
   const socketUrl = config.socketUrl;
   const reconnectAttemptsRef = useRef(0);
@@ -86,13 +90,43 @@ const Layout = () => {
         console.log("WebSocket disconnected");
       }
     };
-  }, [setWs, socketUrl]);
+  }, [socketUrl]);
+
+  const deviceStatusPolling = () => {
+    console.log("Polling for device Out");
+    // Function to fetch device status
+    const fetchDeviceStatus = () => {
+      console.log("Polling for device status In");
+      axios
+        .get(`${serverUrl}/get-connection-status`)
+        .then((res) => {
+          const { isDeviceConnected } = res.data;
+          console.log("Device status", isDeviceConnected);
+          setDeviceStatus((prevStatus) => {
+            if (prevStatus !== isDeviceConnected) {
+              return isDeviceConnected;
+            }
+            return prevStatus;
+          });
+        })
+        .catch((err) => {
+          console.log("Error in fetching device status");
+          console.log(err);
+        });
+    };
+    // Run once immediately
+    fetchDeviceStatus();
+    // Set interval to run every 30 seconds
+    const intervalId = setInterval(fetchDeviceStatus, 30000);
+    return () => clearInterval(intervalId);
+  };
 
   useEffect(() => {
-    if (socketCheckStatus) {
+    if (ws === null) {
       socketConnection();
     }
     const cleanupWifi = wifiConnection(); // Monitor Wifi status
+    deviceStatusPolling(); // Poll for device status
 
     return () => {
       cleanupWifi();
