@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RiWifiOffFill } from "react-icons/ri";
-import { TbReload } from "react-icons/tb";
-import { RiSignalTowerLine } from "react-icons/ri";
-import SmallCircularSpinner from "../general/smallCircularSpinner/SmallCircularSpinner";
-import { MdOutlineDone } from "react-icons/md";
 
-const WifiStatus = ({ wifiStatus = true, refresh }) => {
+import CPUrl from "../general/CPUrl";
+import { GlobalContext } from "../../globalState/GlobalProvider";
+
+
+const WifiStatus = ({ refresh }) => {
+  const { wifiStatus, deviceStatus, setDeviceStatus } = useContext(GlobalContext);
   return (
     <>
       {wifiStatus ? (
@@ -24,6 +25,8 @@ const WifiStatus = ({ wifiStatus = true, refresh }) => {
 export default WifiStatus;
 
 const NotConnected = ({ refresh }) => {
+  const { wifiStatus, deviceStatus, setDeviceStatus } = useContext(GlobalContext);
+
   return (
     <div>
       <div className="flex flex-col items-center gap-5 text-white font-manrope py-2">
@@ -47,8 +50,6 @@ const NotConnected = ({ refresh }) => {
 };
 
 const WifiConnected = () => {
-  const [isCPConnected, setCPConnected] = useState(true);
-
   return (
     <div>
       <div className="flex flex-col items-center gap-3  font-manrope py-2 ">
@@ -59,18 +60,8 @@ const WifiConnected = () => {
           Please set up chargepoint with the connection endpoint
         </p>
         <div className="h-16 bg-bgBlue w-full rounded-3xl">
-          <div className="w-full rounded-full h-1/2 py-1 bg-white flex items-center justify-between px-3">
-            <RiSignalTowerLine color="#007AFF" />
-            <p className="px-5">
-              ws://192.168.29.43:8080/smartconnect/01/susanna
-            </p>
-            {isCPConnected ? (
-              <div className="bg-green rounded-full ">
-                <MdOutlineDone size={16} color="white" />
-              </div>
-            ) : (
-              <SmallCircularSpinner />
-            )}
+          <div className="h-1/2">
+            <CPUrl />
           </div>
           <div className="flex gap-2 items-center justify-center mt-1 text-white font-manrope">
             <h3>Port : 8080</h3>

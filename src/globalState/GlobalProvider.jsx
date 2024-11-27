@@ -3,24 +3,36 @@ import React, { createContext, useMemo, useState } from "react";
 // Step 1: Create a single context
 export const GlobalContext = createContext();
 
-const GlobalProvider = ({children}) => {
-  const [theme, setTheme] = useState("light");
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    isLoggedIn: false,
-  });
+const GlobalProvider = ({ children }) => {
+  const [wifiStatus, setWifiStatus] = useState(false);
+  const [deviceStatus, setDeviceStatus] = useState(false);
+  const [ws, setWs] = useState(null);
+  const [socketCheckStatus, setSocketCheckStatus] = useState(false);
 
   // Step 3: Combine the states into a single value object and memoize it
   const contextValue = useMemo(
     () => ({
-      theme,
-      setTheme,
-      user,
-      setUser,
+      wifiStatus,
+      setWifiStatus,
+      deviceStatus,
+      setDeviceStatus,
+      ws,
+      setWs,
+      socketCheckStatus,
+      setSocketCheckStatus,
     }),
-    [theme, user]
+    [
+      wifiStatus,
+      setWifiStatus,
+      deviceStatus,
+      setDeviceStatus,
+      ws,
+      setWs,
+      socketCheckStatus,
+      setSocketCheckStatus,
+    ]
   );
+
   return (
     <GlobalContext.Provider value={contextValue}>
       {children}

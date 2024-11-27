@@ -5,7 +5,7 @@ const config = {
   connectorId: 1,
   razorpayId: "rzp_test_eOxPBDJzQJ49cu",
   socketUrl: "ws://localhost:8180",
-  isAuthorized: false,
+  isAuthorized: true,
 };
 
 export default config;

@@ -5,9 +5,14 @@ import ActivationPage from "./pages/admin/ActivationPage";
 import IntroPage from "./pages/admin/IntroPage";
 import AccessCodePage from "./pages/admin/AccessCodePage";
 import WifiCheckPage from "./pages/admin/WifiCheckPage";
-import ConnectingChargePoint from "./pages/admin/ConnectingChargePoint";
+import ConnectingChargePoint from "./pages/admin/ChargePointConnectedPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./components/general/Layout";
+import ChargePointConnectedPage from "./pages/admin/ChargePointConnectedPage";
+import PluggedIn from "./pages/PluggedIn";
+import PaymentPending from "./pages/PaymentPending";
+import SomethingWrong from "./pages/SomethingWrong";
+import MeterValues from "./pages/MeterValues";
 
 const App = () => {
   return (
@@ -15,6 +20,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="plugged-in/:connectorId" element={<PluggedIn />} />
+          <Route path="payment-pending" element={<PaymentPending />} />
+          <Route path="something-wrong" element={<SomethingWrong />} />
+          <Route path="meter-values" element={<MeterValues />} />
         </Route>
 
         <Route path="/boot" element={<BootPage />} />
@@ -23,7 +32,7 @@ const App = () => {
           <Route path="intro" element={<IntroPage />} />
           <Route path="access" element={<AccessCodePage />} />
           <Route path="wifi-check" element={<WifiCheckPage />} />
-          <Route path="connect-cp" element={<ConnectingChargePoint />} />
+          <Route path="cp-connected" element={<ChargePointConnectedPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
