@@ -30,7 +30,7 @@ const MeterValueCard = ({ data, gun = 1, handleStop, gunStatus }) => {
                 <div className="w-1/2 text-xs flex flex-col gap-2 font-bold font-manrope">
                   <div>
                     <h3 className="text-whiteWith50Opacity">Tariff</h3>
-                    <h3>$ 12.8/kWh</h3>
+                    <h3>12.8/kWh</h3>
                   </div>
                   <div>
                     <h3 className="text-whiteWith50Opacity">Energy</h3>

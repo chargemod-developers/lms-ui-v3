@@ -26,7 +26,7 @@ const MeterValues = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (gunData && gunData[connectorId].status !== "Charging") {
+    if (gunData && gunData[connectorId]?.status !== "Charging") {
       handleStop();
     }
   }, [gunData]);

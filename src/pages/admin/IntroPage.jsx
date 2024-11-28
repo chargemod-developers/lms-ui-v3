@@ -41,7 +41,7 @@ const IntroPage = () => {
   return (
     <div className="w-full h-full flex flex-col">
       <HeaderWithClock />
-      <div className="h-[80%] pr-5 py-4 overflow-scroll flex flex-col gap-y-2" >
+      <div className="h-[80%] pr-5 py-4 overflow-auto flex flex-col gap-y-2" >
         {visibleMessages.map((index) => (
           <MessageBox
             key={index}
