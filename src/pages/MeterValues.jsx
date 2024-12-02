@@ -52,10 +52,9 @@ const MeterValues = () => {
       });
   };
 
-  // useEffect(() => { 
+  // useEffect(() => {
   //   setGunStatus(gunData);
   // }, [gunData]);
-
 
   useEffect(() => {
     console.log("connectorId");
@@ -90,10 +89,15 @@ const MeterValues = () => {
     }
     const finalTime = Date.now();
     const timeDiff = (finalTime - initialTime) / (1000 * 60);
-    const totalCunsumed = Math.abs(parseFloat(values?.energyDifference) / 1000);
-    const amount = totalCunsumed * 17;
-    // navigate(`/pay/${timeDiff}/${totalCunsumed}/${amount}`); 
-    navigate(`/pay/${timeDiff}/2/32`);
+    // const totalCunsumed = Math.abs(parseFloat(values?.energyDifference) / 1000);
+    const totalCunsumed = parseFloat(values?.energyDifference).toFixed(2);
+    const amount = totalCunsumed * 12.8;
+    if (amount <= 0) {
+      navigate(`/pay/${timeDiff}/${totalCunsumed}/1`);
+    } else {
+      navigate(`/pay/${timeDiff}/${totalCunsumed}/${amount}`);
+    }
+    // navigate(`/pay/${timeDiff}/2/32`);
   };
 
   return (
@@ -111,14 +115,14 @@ const MeterValues = () => {
         <div className="w-[30%]  flex flex-col justify-center gap-2 font-manrope ml-5">
           <h3 className="text-center text-xl text-white">Switch Guns</h3>
           <div className="flex flex-col w-full gap-4">
-            <div className="" onClick={()=>handleGunSelection(1)}>
+            <div className="" onClick={() => handleGunSelection(1)}>
               <GunCard
                 selected={selectedGun === 1 ? true : false}
                 status={gunStatus[1]?.status}
                 gun={1}
               />
             </div>
-            <div onClick={()=>handleGunSelection(2)}>
+            <div onClick={() => handleGunSelection(2)}>
               <GunCard
                 selected={selectedGun === 2 ? true : false}
                 status={gunStatus[2]?.status}
