@@ -6,11 +6,19 @@ const ThankYou = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Disable scrolling
+    document.body.style.overflow = 'hidden';
+
     const timer = setTimeout(() => {
       navigate("/");
     }, 4000);
-    return () => clearTimeout(timer);
-  }, []);
+
+    return () => {
+      // Re-enable scrolling
+      document.body.style.overflow = 'auto';
+      clearTimeout(timer);
+    };
+  }, [navigate]);
 
   return (
     <div className="w-full h-full ">

@@ -27,7 +27,7 @@ const HeaderWithClock = () => {
   return (
     <div className="flex flex-col relative">
       {/* #################################################### */}
-      <div className="absolute flex justify-center w-full gap-4 ">
+      {/* <div className="absolute flex justify-center w-full gap-4 ">
         <div className="flex items-center gap-2 text-white">
           <div
             className={`w-4 h-4 ${wifiStatus ? "bg-green" : "bg-red-700"}`}
@@ -44,7 +44,7 @@ const HeaderWithClock = () => {
           ></div>
           <h2>Device Status</h2>
         </div>
-      </div>
+      </div> */}
       {/* #################################################### */}
 
       <div className="flex justify-between">
