@@ -1,15 +1,16 @@
-import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import config  from '../config/config';
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import config from "../config/config";
 import axios from "axios";
-import HeaderWithClock from '../components/general/header/HeaderWithClock';
+import HeaderWithClock from "../components/general/header/HeaderWithClock";
+import paymentQR from "../assets/images/dummyPaymentQR.jpeg"
 
 const { razorpayId } = config;
-const {serverUrl} = config;
+const { serverUrl } = config;
 
 const PaymentPage = () => {
   const { duration, consumed, amount } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const paymentHandler = async () => {
     const orderData = {
       amount: Math.ceil(amount).toFixed(2) * 100,
@@ -82,55 +83,75 @@ const PaymentPage = () => {
     rzp1.open();
     e.preventDefault();
   };
+
+
+  const handleNavigation = () => {
+    navigate("/thank-you");
+  }
+
   return (
     <div className="w-full h-full rounded-xl  flex flex-col justify-between">
-        <HeaderWithClock />
-        <div className="flex justify-center relative items-center">
-          {/* <img src={gifUrl} width={250} height={250} alt="" /> */}
-          <div className="bg-cardBg text-white absolute opacity-80 h-auto w-full md:w-5/6 rounded-r-3xl rounded-tl-3xl font-manrope">
-            <div className="m-5">
-              <div className="rounded h-3/4 flex justify-between gap-5">
-                <div className=" w-1/2 rounded flex flex-col gap-3">
-                  <div className="h-1/2 border-2 border-bgBlue p-3 rounded-2xl flex flex-col justify-center">
-                    <h1 className="text-colorThree  text-xl font-semibold text-center">
-                      Total energy consumption
-                    </h1>
-                    <p className="text-center text-lg font-bold mt-2">
-                      {consumed} kWh
-                    </p>
-                  </div>
-                  <div className="border-2 border-bgBlue p-4 h-1/2 rounded-2xl flex flex-col justify-center">
-                    <h1 className="text-colorThree  text-xl font-semibold text-center">
-                      Duration
-                    </h1>
-                    <p className="text-center text-lg font-bold mt-2">
-                      {parseFloat(duration).toFixed(2)} Minutes
-                    </p>
-                  </div>
+      <HeaderWithClock />
+      <div className="flex justify-center relative items-center" onClick={handleNavigation}>
+        {/* <img src={gifUrl} width={250} height={250} alt="" /> */}
+        <div className="bg-cardBg text-white absolute opacity-80 h-auto w-full md:w-5/6 rounded-r-3xl rounded-tl-3xl font-manrope">
+          <div className="m-5">
+            <div className="rounded h-3/4 flex justify-between gap-5">
+              <div className=" w-1/2 rounded flex flex-col gap-3">
+                <div className="h-1/2 border-2 border-bgBlue p-3 rounded-2xl flex flex-col justify-center">
+                  <h1 className="text-colorThree  text-xl font-semibold text-center">
+                    Total energy consumption
+                  </h1>
+                  <p className="text-center text-lg font-bold mt-2">
+                    {consumed} kWh
+                  </p>
                 </div>
-                <div className="border-2 border-bgBlue w-1/2 rounded-2xl flex flex-col justify-center">
+                <div className="border-2 border-bgBlue p-4 h-1/2 rounded-2xl flex flex-col justify-center">
+                  <h1 className="text-colorThree  text-xl font-semibold text-center">
+                    Duration
+                  </h1>
+                  <p className="text-center text-lg font-bold mt-2">
+                    {parseFloat(duration).toFixed(2)} Minutes
+                  </p>
+                </div>
+              </div>
+              {/* <div className="border-2 border-bgBlue w-1/2 rounded-2xl flex flex-col justify-center">
                   <h1 className="text-colorThree  text-2xl font-semibold text-center">
                     Amount
                   </h1>
                   <p className="text-center text-2xl font-bold mt-2">
                     ₹ {Math.ceil(amount).toFixed(2)}
                   </p>
+                </div> */}
+
+              <div className="flex flex-col   w-1/2 gap-3">
+                <div className="border-2 border-bgBlue flex items-center rounded-2xl max-h-52 ">
+                  <div className="w-[80%] h-[99%] flex  items-center rounded-2xl mx-auto overflow-hidden ">
+                    <img src={paymentQR} alt="" className="translate-y-3" />
+                  </div>
+                </div>
+                <div className="border-2 border-bgBlue  rounded-2xl flex flex-col justify-center items-center overflow-hidden  ">
+                  <p className="text-center text-2xl font-bold mt-2">
+                    ₹ {Math.ceil(amount).toFixed(2)}
+                  </p>
                 </div>
               </div>
-              <div className="mt-5 w-full h-1/4">
-                <button
-                  onClick={paymentHandler}
-                  className="w-full rounded-3xl border-2 border-[#3B8CE2] bg-gradient-to-r from-colorTwo to-colorThree py-2 font-semibold hover:bg-[#3B8CE2] hover:text-white"
-                >
-                  PAY
-                </button>
-              </div>
+
             </div>
+            {/* <div className="mt-5 w-full h-1/4">
+              <button
+                onClick={paymentHandler}
+                className="w-full rounded-3xl border-2 border-[#3B8CE2] bg-gradient-to-r from-colorTwo to-colorThree py-2 font-semibold hover:bg-[#3B8CE2] hover:text-white"
+              >
+                PAY
+              </button>
+            </div> */}
           </div>
         </div>
-        <div></div>
       </div>
-  )
-}
+      <div></div>
+    </div>
+  );
+};
 
-export default PaymentPage
+export default PaymentPage;
