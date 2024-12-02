@@ -64,7 +64,7 @@ const MeterValueCard = ({
                   <div className="flex flex-col gap-1 items-center">
                     <h3 className="text-whiteWith50Opacity">Voltage</h3>
                     <h3>
-                      {data[gun].voltage
+                      {data[gun]?.voltage
                         ? `${parseFloat(data[gun]?.voltage)?.toFixed(2)} V`
                         : "00 V"}
                     </h3>
@@ -72,7 +72,7 @@ const MeterValueCard = ({
                   <div className="flex flex-col gap-1 items-center">
                     <h3 className="text-whiteWith50Opacity">Current</h3>
                     <h3>
-                      {data[gun].current
+                      {data[gun]?.current
                         ? `${parseFloat(data[gun]?.current)?.toFixed(2)} A`
                         : "00 A"}
                     </h3>
@@ -80,7 +80,7 @@ const MeterValueCard = ({
                   <div className="flex flex-col gap-1 items-center">
                     <h3 className="text-whiteWith50Opacity">Power</h3>
                     <h3>
-                      {data[gun].power
+                      {data[gun]?.power
                         ? `${parseFloat(data[gun]?.power)?.toFixed(2)} W`
                         : "00 W"}
                     </h3>
