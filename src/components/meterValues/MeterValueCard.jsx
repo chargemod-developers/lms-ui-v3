@@ -64,7 +64,7 @@ const MeterValueCard = ({
                   <div className="flex flex-col gap-1 items-center">
                     <h3 className="text-whiteWith50Opacity">Voltage</h3>
                     <h3>
-                      {data[gun]?.voltage
+                      {(data[gun]?.voltage && data[gun]?.voltage !== "N/A")
                         ? `${parseFloat(data[gun]?.voltage)?.toFixed(2)} V`
                         : "00 V"}
                     </h3>
