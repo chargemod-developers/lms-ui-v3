@@ -90,13 +90,13 @@ const MeterValues = () => {
     const finalTime = Date.now();
     const timeDiff = (finalTime - initialTime) / (1000 * 60);
     // const totalCunsumed = Math.abs(parseFloat(values?.energyDifference) / 1000);
-    const totalCunsumed = parseFloat(values?.energyDifference).toFixed(2);
+    const totalCunsumed = parseFloat(meterValues[connectorId]?.energyDifference).toFixed(2);
     const amount = totalCunsumed * 12.8;
 
     console.log("energyDifference");
-    console.log(values?.energyDifference);
+    console.log(meterValues[connectorId]?.energyDifference);
     console.log("EnergyDifference tofixed");
-    console.log(parseFloat(values?.energyDifference).toFixed(2));
+    console.log(parseFloat(meterValues[connectorId]?.energyDifference).toFixed(2));
 
     console.log("totalCunsumed");
     console.log(totalCunsumed);
