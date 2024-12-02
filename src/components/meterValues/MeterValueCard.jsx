@@ -81,8 +81,8 @@ const MeterValueCard = ({
                     <h3 className="text-whiteWith50Opacity">Power</h3>
                     <h3>
                       {data[gun]?.power
-                        ? `${parseFloat(data[gun]?.power)?.toFixed(2)} W`
-                        : "00 W"}
+                        ? `${parseFloat(data[gun]?.power)?.toFixed(2)} kW`
+                        : "00 kW"}
                     </h3>
                   </div>
                 </div>
