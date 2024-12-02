@@ -93,7 +93,7 @@ const MeterValues = () => {
     const totalCunsumed = Math.abs(parseFloat(values?.energyDifference) / 1000);
     const amount = totalCunsumed * 17;
     // navigate(`/pay/${timeDiff}/${totalCunsumed}/${amount}`); 
-    navigate(`/pay/${timeDiff}/3/3`);
+    navigate(`/pay/${timeDiff}/2/32`);
   };
 
   return (
