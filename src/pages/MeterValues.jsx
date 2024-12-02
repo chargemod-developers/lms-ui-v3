@@ -92,6 +92,16 @@ const MeterValues = () => {
     // const totalCunsumed = Math.abs(parseFloat(values?.energyDifference) / 1000);
     const totalCunsumed = parseFloat(values?.energyDifference).toFixed(2);
     const amount = totalCunsumed * 12.8;
+
+    console.log("energyDifference");
+    console.log(values?.energyDifference);
+    console.log("EnergyDifference tofixed");
+    console.log(parseFloat(values?.energyDifference).toFixed(2));
+
+    console.log("totalCunsumed");
+    console.log(totalCunsumed);
+    console.log("amount");
+    console.log(amount);
     if (amount <= 0) {
       navigate(`/pay/${timeDiff}/${totalCunsumed}/1`);
     } else {
