@@ -92,7 +92,7 @@ const PaymentPage = () => {
   return (
     <div className="w-full h-full rounded-xl  flex flex-col justify-between">
       <HeaderWithClock />
-      <div className="flex justify-center relative items-center" onClick={handleNavigation}>
+      <div className="flex justify-center relative items-center" onClick={paymentHandler}>
         {/* <img src={gifUrl} width={250} height={250} alt="" /> */}
         <div className="bg-cardBg text-white absolute opacity-80 h-auto w-full md:w-5/6 rounded-r-3xl rounded-tl-3xl font-manrope">
           <div className="m-5">
